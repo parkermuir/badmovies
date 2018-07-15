@@ -16,7 +16,6 @@ class Search extends React.Component {
   }
 
   handleChange(e) {
-    console.log(e.target.value);
     this.setState({selected: e.target.value});
   }
 

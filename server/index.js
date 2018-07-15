@@ -4,7 +4,6 @@ var request = require('request');
 var app = express();
 var config = require('./config.js');
 var axios = require('axios');
-
 var apiHelpers = require('./apiHelpers.js');
 
 app.use(bodyParser.json());
@@ -15,16 +14,11 @@ app.use(express.static(__dirname + '/../client/dist'));
 app.get('/search', function (req, res) {
   // use this endpoint to search for movies by genres, 
   // sort them by horrible votes using the search parameters in the API
-  let genre = req.body.genre;
-  let url = `https://api.themoviedb.org/3/discover/movie?api_key=${config.API_KEY}&language=en-US&sort_by=vote_average.asc&include_adult=false&include_video=false&page=1&with_genres=${genre}`;
-  
-  axios.get(url)
-    .then((response) => {
-      let results = response.data.results;
+  apiHelpers.searchByGenre(req.query)
+    .then((results) => {
       res.send(results);
     })
-    .catch((err) => console.error(err));
-
+    .catch(err => console.error(err));
 });
 
 app.get('/genres', function (req, res) {

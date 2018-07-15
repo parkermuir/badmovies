@@ -10,8 +10,8 @@ class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      movies: [{ deway: "movies" }],
-      favorites: [{ deway: "favorites" }],
+      movies: [{ deway: 'movies' }],
+      favorites: [{ deway: 'favorites' }],
       showFaves: false,
     };
 
@@ -21,9 +21,10 @@ class App extends React.Component {
 
   getMovies(input) {
     // make an axios request to your server on the GET SEARCH endpoint
-    axios.get('/search', { genre: input})
+    axios.get('/search', {params: {genre: input}})
       .then((response) => {
-        console.log(response);
+        this.setState({movies: response.data});
+        console.log(this.state.movies);
       })
       .catch(err => console.log('error in getMovies: ', err));
   }
