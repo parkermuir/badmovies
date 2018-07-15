@@ -24,7 +24,7 @@ class App extends React.Component {
     axios.get('/search', {params: {genre: input}})
       .then((response) => {
         this.setState({movies: response.data});
-        console.log(this.state.movies);
+        console.log('STATE of Movies; ', this.state.movies);
       })
       .catch(err => console.log('error in getMovies: ', err));
   }
