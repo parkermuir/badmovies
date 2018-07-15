@@ -12,7 +12,7 @@ app.use(bodyParser.json());
 // Due to express, when you load the page, it doesn't make a get request to '/', it simply serves up the dist folder
 app.use(express.static(__dirname + '/../client/dist'));
 
-app.post('/search', function (req, res) {
+app.get('/search', function (req, res) {
   // use this endpoint to search for movies by genres, 
   // sort them by horrible votes using the search parameters in the API
   let genre = req.body.genre;

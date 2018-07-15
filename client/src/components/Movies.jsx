@@ -2,7 +2,7 @@ import React from 'react';
 
 class Movies extends React.Component {
   constructor(props) {
-    super(props)
+    super(props);
 
   }
 
@@ -16,9 +16,7 @@ class Movies extends React.Component {
     return (
       <ul className="movies">
 
-
         {/* Make this list dynamic! */}
-
 
         <li className="movie_item">
           <img src="https://lh3.googleusercontent.com/97gnjRiv2zIRnDupzfxYFoI-6zlIK3jKgb6KOCDf_tjWkY9epbITdSFIbiKhuccOqQ=w300" />
