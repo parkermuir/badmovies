@@ -7,13 +7,13 @@ import Movies from './components/Movies.jsx'
 
 class App extends React.Component {
   constructor(props) {
-  	super(props)
-  	this.state = {
-      movies: [{deway: "movies"}],
-      favorites: [{deway: "favorites"}],
+    super(props);
+    this.state = {
+      movies: [{ deway: "movies" }],
+      favorites: [{ deway: "favorites" }],
       showFaves: false,
     };
-    
+
     // you might have to do something important here!
   }
 
