@@ -23,7 +23,7 @@ app.get('/search', function (req, res) {
 
 app.get('/genres', function (req, res) {
   // make an axios request to get the list of official genres and send back
-  let url = `https://api.themoviedb.org/3/genre/movie/list?api_key=${config.API_KEY}&language=en-US`
+  let url = `https://api.themoviedb.org/3/genre/movie/list?api_key=${config.API_KEY}&language=en-US`;
   axios.get(url)
     .then((response) => {
       let genres = response.data.genres;
