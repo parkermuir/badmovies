@@ -7,8 +7,13 @@ class Movies extends React.Component {
     this.onClick = this.onClick.bind(this);
   }
 
-  onClick(e) {
-    console.log(e.target.value);
+  onClick(index) {
+    console.log(index);
+    if (this.props.showFaves) {
+      //delete from favorites
+    } else if (!this.props.showFaves) {
+      //add to favorites
+    }
   }
   // Make an onClick for each list item. If the movies shown is the search results, 
   // onClick add it to the database (do it in the main app, and pass down the function)
@@ -17,13 +22,16 @@ class Movies extends React.Component {
   // You can tell which list is currently being rendered based on whether the prop "showFaves" is false (search results) or true (fave list) (within index.jsx)
 
   render() {
-    return (
-      <ul className="movies">
+    if (this.props.movies.length === 0) {
+      return <ul></ul>;
+    }
 
+    return (
+      <ul className="movies" >
         {/* Make this list dynamic! */}
-        {this.props.movies.map((movie) => {
+        {this.props.movies.map((movie, index) => {
           return (
-            <li key={movie.id} className="movie_item">
+            <li key={movie.id} onClick={() => this.onClick(index)} value={index} className="movie_item">
               <img src={'https://image.tmdb.org/t/p/w500/' + movie.poster_path} />
               <div className="movie_description">
                 <h2>{movie.original_title}</h2>
@@ -39,10 +47,8 @@ class Movies extends React.Component {
                 </section>
               </div>
             </li>
-
-          )
+          );
         })}
-
       </ul>
     );
   }
