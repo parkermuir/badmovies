@@ -33,7 +33,7 @@ app.get('/genres', function (req, res) {
 });
 
 app.post('/save', function(req, res) {
-
+  console.log(req.body);
 });
 
 app.post('/delete', function(req, res) {
