@@ -1,4 +1,5 @@
 import React from 'react';
+import axios from 'axios';
 
 class Movies extends React.Component {
   constructor(props) {
@@ -11,8 +12,10 @@ class Movies extends React.Component {
     console.log(index);
     if (this.props.showFaves) {
       //delete from favorites
+      axios.post('/delete', {movie: this.props.movies[index].id})
     } else if (!this.props.showFaves) {
       //add to favorites
+      axios.post('/save', {movie: this.props.movies[index]})
     }
   }
   // Make an onClick for each list item. If the movies shown is the search results, 

@@ -11,12 +11,13 @@ class App extends React.Component {
     this.state = {
       movies: [],
       favorites: [],
-      showFaves: false,
+      showFaves: true,
     };
 
     // you might have to do something important here!
     this.swapFavorites = this.swapFavorites.bind(this);
     this.getMovies = this.getMovies.bind(this);
+    this.getFavorites = this.getFavorites.bind(this);
   }
 
   getMovies(input) {
@@ -27,6 +28,15 @@ class App extends React.Component {
         console.log('STATE of Movies; ', this.state.movies);
       })
       .catch(err => console.log('error in getMovies: ', err));
+  }
+
+  getFavorites() {
+    axios.get('/favorites')
+      .then((response) => {
+        console.log(response.data)
+        this.setState({movies: response.data})
+      })
+      .catch(err => console.log('error in getfavs ', err))
   }
 
   saveMovie() {
@@ -42,6 +52,12 @@ class App extends React.Component {
     this.setState({
       showFaves: !this.state.showFaves
     });
+
+    
+
+    if (this.state.showFaves !== true) {
+      this.getFavorites()
+    }
   }
 
   render() {

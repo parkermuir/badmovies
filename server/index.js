@@ -5,6 +5,7 @@ var app = express();
 var config = require('./config.js');
 var axios = require('axios');
 var apiHelpers = require('./apiHelpers.js');
+var dbHelpers = require('./database.js');
 
 app.use(bodyParser.json());
 
@@ -32,12 +33,29 @@ app.get('/genres', function (req, res) {
     .catch(err => console.error(err));
 });
 
+app.get('/favorites', (req, res) => {
+  console.log('get favorites on server')
+  dbHelpers.getAllFavorites((err, data) => {
+    if (err) {
+      console.error(err)
+    } else {
+      console.log(data)
+      res.send(data)
+    }
+  })
+})
+
 app.post('/save', function(req, res) {
-  console.log(req.body);
+  dbHelpers.saveFavorite(req.body.movie, () => {
+    res.status(200).send('submitted to db')
+  });
 });
 
 app.post('/delete', function(req, res) {
+  console.log('movie id to delete ', req.body.movie)
+  dbHelpers.deleteFavorites(req.body.movie, (err, res) => {
 
+  })
 });
 
 app.listen(3000, function() {
